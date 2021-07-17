@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title style="width: auto;">
+           Set Alarm
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+<ion-list style="max-height: 15rem;overflow: auto;">
+  <ion-item>
+      <ion-label>At time of event </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item> 
+      <ion-label>5 minutes before</ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>10 minutes before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>15 minutes before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>30 minutes before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>1 hours before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>2 hours before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>24 hours before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+      <ion-label>2 days before </ion-label>
+        <ion-checkbox></ion-checkbox>
+  </ion-item>
+
+  <ion-item  (click)="close()">
+      <ion-button expand="full">Save</ion-button>
+      <ion-button expand="full">Close</ion-button>
+  </ion-item>
+
+</ion-list>
+</ion-content>

@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+          {{ viewTitle }}
+    </ion-title>
+
+    <ion-buttons slot="start">
+           <ion-button (click)="today()">Today</ion-button>
+     </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-card color="light" >
+      <ion-card-header tappable (click)="collapseCard = !collapseCard">
+          <ion-card-title style="font-size: 1.5em;"> New Event </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content *ngIf="!collapseCard">
+            <ion-item color="light">
+            <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+          </ion-item>
+         
+          <ion-item color="light">
+              <ion-input type="text" placeholder="Description" [(ngModel)]="event.desc"></ion-input>
+          </ion-item>
+
+          <ion-item color="light">
+              <ion-label>Start</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM:HH:mm" [(ngModel)]="event.startTime" 
+              [min]="minDate"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="light">
+              <ion-label>End</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM:HH:mm" [(ngModel)]="event.endTime" 
+              [min]="minDate"></ion-datetime>
+          </ion-item>
+
+          <ion-item  color="light">
+            <ion-label>Reminder</ion-label>
+            <ion-fab-button  size="small" vertical="top" horizontal="end" (click)="presentPopover($event)">
+                    <ion-icon name="alarm"> </ion-icon>
+                </ion-fab-button>
+          </ion-item>
+          
+          <ion-item color="light">
+              <ion-label> All Day </ion-label>
+              <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+          </ion-item>
+
+          <ion-button fill="outline" expand="block" (click)="addEvent()" [disabled]="event.title== ''"> Add Event </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+ 
+    <!-- Change the display calendar -->
+    <ion-row> 
+    <ion-col size="4">
+      <ion-button expand="block" size="small" [color]="calendar.mode == 'month' ? 'primary' : 'secondary'" 
+      (click)="changeMode('month')">Month</ion-button>
+    </ion-col>
+    
+    <ion-col size="4">
+      <ion-button expand="block" size="small" [color]="calendar.mode == 'week' ? 'primary' : 'secondary'" 
+      (click)="changeMode('week')">Week</ion-button>
+    </ion-col>
+    
+    <ion-col size="4">
+      <ion-button expand="block" size="small" [color]="calendar.mode == 'day' ? 'primary' : 'secondary'" 
+      (click)="changeMode('day')">Day</ion-button>
+    </ion-col>
+    
+    
+    <!-- Move back one screen -->
+    <ion-col size="6" style="text-align: start;">
+        <ion-button fill="clear" size="small" (click)="back()">
+            <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-col> 
+    <!-- Move forward -->
+    <ion-col size="6" style="text-align: end;">
+        <ion-button fill="clear" size="small" (click)="next()">
+            <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-col> 
+
+  </ion-row>   
+
+  <!--(onCurrentDateChanged)="onCurrentDateChanged($event)"-->
+  
+  <calendar [eventSource]="eventSource"
+    [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate"
+    (onRangeChanged)="reloadSource(startTime, endTime)"
+    (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)"
+    startHour="6"
+    endHour="20"
+    step="30"
+    startingDayWeek="1"
+    startingDayMonth="1">
+  </calendar>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "IonCalendar",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
